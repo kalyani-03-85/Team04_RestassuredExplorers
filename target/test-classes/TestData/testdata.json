@@ -619,22 +619,74 @@
 				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
 			      "expectedMessage": "Unauthorized"
 			    },
-			    {
-			      "scenarioName": "delete program by programid with no auth",
-			      "endPoint": "deletebyprogid",
-			      "requestType": "DELETE",
-			      "expectedStatusCode": 401,
-				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
-			      "expectedMessage": "Unauthorized"
-			    },
-			    {
-			      "scenarioName": "delete program by programname with no auth",
-			      "endPoint": "deletebyprogname",
-			      "requestType": "DELETE",
-			      "expectedStatusCode": 401,
-				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
-			      "expectedMessage": "Unauthorized"
-			    },
+				{
+				  "scenarioName": "deletes a program with valid programName",
+				  "endPoint": "deletebyprogname",
+				  "requestType": "DELETE",
+				  "expectedStatusCode": 200,
+				  "expectedStatusLine": "HTTP/1.1 200 OK",
+				  "expectedMessage": "deleted successfully"
+				},
+				{
+				  "scenarioName": "deletes a program with non existing programName",
+				  "endPoint": "deletebyprogname",
+				  "requestType": "DELETE",
+				  "programName": "DoesNotExistXYZ",
+				  "expectedStatusCode": 404,
+				  "expectedStatusLine": "HTTP/1.1 404 Not Found",
+				  "expectedMessage": "not found"
+				},
+				{
+				  "scenarioName": "deletes a program with invalid endpoint",
+				  "endPoint": "deletebyprognameXYZ",
+				  "requestType": "DELETE",
+				  "expectedStatusCode": 404,
+				  "expectedStatusLine": "HTTP/1.1 404 Not Found",
+				  "expectedMessage": "Invalid endpoint"
+				},
+				{
+				  "scenarioName": "deletes a program with invalid method",
+				  "endPoint": "deletebyprogname",
+				  "requestType": "POST",
+				  "expectedStatusCode": 405,
+				  "expectedStatusLine": "HTTP/1.1 405 Method Not Allowed",
+				  "expectedMessage": "Request method 'POST' is not supported"
+				},
+				{
+				  "scenarioName": "delete program by programname with no auth",
+				  "endPoint": "deletebyprogname",
+				  "requestType": "DELETE",
+				  "authType": "noAuth",
+				  "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+				  "expectedMessage": "Unauthorized"
+				},
+				{
+				  "scenarioName": "deletes a program with valid program ID",
+				  "endPoint": "deletebyprogid",
+				  "requestType": "DELETE",
+				  "expectedStatusCode": 200,
+				  "expectedStatusLine": "HTTP/1.1 200 OK",
+				  "expectedMessage": "deleted successfully"
+				},
+				{
+				  "scenarioName": "deletes a program with alphabets in program ID",
+				  "endPoint": "deletebyprogid",
+				  "requestType": "DELETE",
+				  "programId": "99999",
+				  "expectedStatusCode": 404,
+				  "expectedStatusLine": "HTTP/1.1 404 Not Found",
+				  "expectedMessage": "Invalid endpoint"
+				},
+				{
+				  "scenarioName": "delete program by programid with no auth",
+				  "endPoint": "deletebyprogid",
+				  "requestType": "DELETE",
+				  "authType": "noAuth",
+				  "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+				  "expectedMessage": "Unauthorized"
+				},
 			    {
 			      "scenarioName": "create batch with no auth",
 			      "endPoint": "batches",
@@ -680,7 +732,7 @@
 					"batchNoOfClasses": 0,
 			        "batchStatus": "Active",	      
 			      "expectedStatusCode": 401,
-				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+				  "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
 			      "expectedMessage": "Unauthorized"
 			    },
 			    {
@@ -688,7 +740,7 @@
 			      "endPoint": "batches",
 			      "requestType": "DELETE",
 			      "expectedStatusCode": 401,
-				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+				  "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
 			      "expectedMessage": "Unauthorized"
 			    }
 			  		  
