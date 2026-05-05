@@ -1,0 +1,1593 @@
+[
+  {
+    "scenarioName": "Admin generates token with invalid method",
+    "endPoint": "login",
+    "userLoginEmailId": "team04@gmail.com",
+    "password": "TeamFour@123",
+    "requestType": "GET",
+    "expectedStatusCode": 405,
+    "expectedstatusline": "Not Allowed"
+  },
+  {
+    "scenarioName": "Admin generates token with invalid base URL",
+    "endPoint": "login",
+    "userLoginEmailId": "team04@gmail.com",
+    "password": "TeamFour@123",
+    "requestType": "POST",
+    "expectedStatusCode": 404,
+    "expectedstatusline": "Not Found"
+  },
+  {
+    "scenarioName": "Admin generates token with invalid content type",
+    "endPoint": "login",
+    "userLoginEmailId": "team04@gmail.com",
+    "password": "TeamFour@123",
+    "requestType": "POST",
+    "expectedStatusCode": 415,
+    "expectedstatusline": "Unsupported Media Type"
+  },
+  {
+    "scenarioName": "Admin generates token with invalid endpoint",
+    "endPoint": "logo",
+    "userLoginEmailId": "team04@gmail.com",
+    "password": "TeamFour@123",
+    "requestType": "POST",
+    "expectedStatusCode": 401,
+    "expectedstatusline": "Unauthorized"
+  },
+  {
+    "scenarioName": "Admin generates token with empty email",
+    "endPoint": "login",
+    "userLoginEmailId": "",
+    "password": "TeamFour@123",
+    "requestType": "POST",
+    "expectedStatusCode": 400,
+    "expectedstatusline": "Bad Request"
+  },
+  {
+    "scenarioName": "Admin generates token with special characters in email",
+    "endPoint": "login",
+    "userLoginEmailId": "##%&team04@gmail.com",
+    "password": "TeamFour@123",
+    "requestType": "POST",
+    "expectedStatusCode": 400,
+    "expectedstatusline": "Bad Request"
+  },
+  {
+    "scenarioName": "Admin generates token with email having spaces",
+    "endPoint": "login",
+    "userLoginEmailId": "team 04@gmail.com",
+    "password": "TeamFour@123",
+    "requestType": "POST",
+    "expectedStatusCode": 400,
+    "expectedstatusline": "Bad Request"
+  },
+  {
+    "scenarioName": "Admin generates token with null in email field",
+    "endPoint": "login",
+    "userLoginEmailId": null,
+    "password": "TeamFour@123",
+    "requestType": "POST",
+    "expectedStatusCode": 401,
+    "expectedstatusline": "Unauthorized"
+  },
+  {
+    "scenarioName": "Admin generates token for unregistered email",
+    "endPoint": "login",
+    "userLoginEmailId": "teamteam04@gmail.com",
+    "password": "TeamFour@123",
+    "requestType": "POST",
+    "expectedStatusCode": 400,
+    "expectedstatusline": "Bad Request"
+  },
+  {
+    "scenarioName": "Admin generates token with empty password",
+    "endPoint": "login",
+    "userLoginEmailId": "team04@gmail.com",
+    "password": " ",
+    "requestType": "POST",
+    "expectedStatusCode": 400,
+    "expectedstatusline": "Bad Request"
+  },
+  {
+    "scenarioName": "Admin generates token with special characters inserted in password",
+    "endPoint": "login",
+    "userLoginEmailId": "team04@gmail.com",
+    "password": "#$&TeamFour@123",
+    "requestType": "POST",
+    "expectedStatusCode": 401,
+    "expectedstatusline": "Unauthorized"
+  },
+  {
+    "scenarioName": "Admin generates token with password having spaces",
+    "endPoint": "login",
+    "userLoginEmailId": "team04@gmail.com",
+    "password": "Team Four@123",
+    "requestType": "POST",
+    "expectedStatusCode": 400,
+    "expectedstatusline": "Bad Request"
+  },
+  {
+    "scenarioName": "Admin generates token with null in password field",
+    "endPoint": "login",
+    "userLoginEmailId": "team04@gmail.com",
+    "password": null,
+    "requestType": "POST",
+    "expectedStatusCode": 400,
+    "expectedstatusline": "Bad Request"
+  },
+  {
+    "scenarioName": "Admin generates for inactive user",
+    "endPoint": "login",
+    "userLoginEmailId": "Team006@gmail.com",
+    "password": "TeamFour@123",
+    "requestType": "POST",
+    "expectedStatusCode": 400,
+    "expectedstatusline": "Bad Request"
+  },
+  {
+    "scenarioName": "Admin generates token without request body",
+    "endPoint": "login",
+    "userLoginEmailId": "",
+    "password": "",
+    "requestType": "POST",
+    "expectedStatusCode": 415,
+    "expectedstatusline": "Unsupported Media Type"
+  },
+  {
+    "scenarioName": "Admin generates token with valid credential",
+    "endPoint": "login",
+    "userLoginEmailId": "team04@gmail.com",
+    "password": "TeamFour@123",
+    "requestType": "POST",
+    "expectedStatusCode": 200,
+    "expectedstatusline": "OK"
+  },
+  
+    {
+      "scenarioName": "Admin retrieves all batches with invalid endpoint",
+      "endPoint": "invalidbatches",
+      "requestType": "GET",
+      "expectedStatusCode": 404,
+      "expectedstatusline": "Not Found"
+    },
+    {
+      "scenarioName": "Admin retrieves all batches with invalid method",
+      "endPoint": "batches",
+      "requestType": "POST",
+      "expectedStatusCode": 405,
+      "expectedstatusline": "Method Not Allowed"
+    },
+    {
+      "scenarioName": "Admin retrieves all batches with invalid content type",
+      "endPoint": "batches",
+      "requestType": "GET",
+      "expectedStatusCode": 415,
+      "expectedstatusline": "Unsupported Media Type"
+    },
+    {
+      "scenarioName": "Admin retrieves all batches with valid endpoint",
+      "endPoint": "batches",
+      "requestType": "GET",
+      "expectedStatusCode": 200,
+      "expectedstatusline": "OK"
+    },
+	{
+	  "scenarioName": "Admin retrieves a batch with inactive batch ID",
+	  "endPoint": "batches/batchId/{batch_id}",
+	  "requestType": "GET",
+	  "expectedStatusCode": 200,
+	  "expectedstatusline": "OK"
+	},
+	
+	{
+	  "scenarioName": "Admin retrieves a batch with invalid batch ID",
+	  "endPoint": "batches/batchId/{batch_id}",
+	  "requestType": "GET",
+	  "expectedStatusCode": 404,
+	  "expectedstatusline": "Not Found"
+	},
+
+	{
+	  "scenarioName": "Admin retrieves a batch by batch id with invalid endpoint",
+	  "endPoint": "batc/batchee/{batch_id}",
+	  "requestType": "GET",
+	  "expectedStatusCode": 404,
+	  "expectedstatusline": "Not Found"
+	},
+	{
+	  "scenarioName": "Admin retrieves a batch by batch id with invalid method",
+	  "endPoint": "batches/batchId/{batch_id}",
+	  "requestType": "POST",
+	  "expectedStatusCode": 405,
+	  "expectedstatusline": "Method Not Allowed"
+	},
+	{
+	  "scenarioName": "Admin retrieves a batch by batch id with invalid content type",
+	  "endPoint": "batches/batchId/{batch_id}",
+	  "requestType": "GET",
+	  "expectedStatusCode": 415,
+	  "expectedstatusline": "Method Not Allowed"
+	},
+	
+	{
+	  "scenarioName": "Admin retrieves a batch with valid batch ID",
+	  "endPoint": "batches/batchId/{batch_id}",
+	  "requestType": "GET",
+	  "expectedStatusCode": 200,
+	  "expectedstatusline": "OK"
+	},
+
+	{
+	  "scenarioName": "Admin retrieves a batch with invalid batch name",
+	  "endPoint": "batches/batchName/{batch_name}",
+	  "requestType": "GET",
+	  "expectedStatusCode": 404,
+	  "expectedstatusline": "Not Found"
+	},
+	
+	{
+	  "scenarioName": "Admin retrieves a batch by batch name with invalid endpoint",
+	  "endPoint": "batches/batch/{batch_name}",
+	  "requestType": "GET",
+	  "expectedStatusCode": 404,
+	  "expectedstatusline": "Not Found"
+	},	
+	
+	{
+	  "scenarioName": "Admin retrieves a batch by batch name with invalid method",
+	  "endPoint": "batches/batchName/{batch_name}",
+	  "requestType": "POST",
+	  "expectedStatusCode": 405,
+	  "expectedstatusline": "Not Allowed"
+	},
+	{
+	  "scenarioName": "Admin retrieves a batch by batch name with invalid content type",
+	  "endPoint": "batches/batchName/{batch_name}",
+	  "requestType": "GET",
+	  "expectedStatusCode": 415,
+	  "expectedstatusline": "Unsupported Media Type"
+	},
+	{
+	  "scenarioName": "Admin retrieves a batch with valid batch name",
+	  "endPoint": "batches/batchName/{batch_name}",
+	  "requestType": "GET",
+	  "expectedStatusCode": 200,
+	  "expectedstatusline": "OK"
+	},
+
+	{
+	  "scenarioName": "Admin retrieves a batch with invalid Program Id",
+	  "endPoint": "batches/program/{program_id}",
+	  "requestType": "GET",
+	  "expectedStatusCode": 404,
+	  "expectedstatusline": "Not Found"
+	},
+
+	{
+	  "scenarioName": "Admin retrieves a batch by Program Id with invalid endpoint",
+	  "endPoint": "batches/prog/{program_id}",
+	  "requestType": "GET",
+	  "expectedStatusCode": 404,
+	  "expectedstatusline": "Not Found"
+	},	
+
+	{
+	  "scenarioName": "Admin retrieves a batch by Program Id with invalid method",
+	  "endPoint": "batches/program/{program_id}",
+	  "requestType": "POST",
+	  "expectedStatusCode": 405,
+	  "expectedstatusline": "Not Allowed"
+	},
+	{
+	  "scenarioName": "Admin retrieves a batch by Program Id with invalid content type",
+	  "endPoint": "batches/program/{program_id}",
+	  "requestType": "GET",
+	  "expectedStatusCode": 415,
+	  "expectedstatusline": "Unsupported Media Type"
+	},
+	{
+	  "scenarioName": "Admin retrieves a batch with valid Program Id",
+	  "endPoint": "batches/program/{program_id}",
+	  "requestType": "GET",
+	  "expectedStatusCode": 200,
+	  "expectedstatusline": "OK"
+	},
+	
+	{
+	  "scenarioName": "Admin creates batch with mandatory and optional fields",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 201,
+	  "expectedstatusline": "Created",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 2,
+	  "programName": "{program_name}"
+	},			
+	{
+	  "scenarioName": "Admin creates batch with a program name that does not match the associated program id",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 201,
+	  "expectedstatusline": "Created",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 2,
+      "programName": "not a valid prog name"
+	},			
+	{
+	  "scenarioName": "Admin creates batch with only optional fields",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": " ",
+	  "batchNoOfClasses": 0,
+	  "programName": "APIBasics-zGwQYtwC"
+	},			
+	{
+	  "scenarioName": "Admin creates batch with only mandatory fields",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 201,
+	  "expectedstatusline": "Created",
+	  "batchName": " ",
+	  "batchDescription": "",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 2,
+	  "programName": " "
+	},
+	
+	{
+	  "scenarioName": "Admin creates batch without underscore in name",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": "APIBasics-zGwQYtwC100",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 2,
+	  "programName": "{program_name}"
+	},
+
+	{
+	  "scenarioName": "Admin creates batch with hyphen in name",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": "APIBasics--zGwQYtwC_1001",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 2,
+	  "programName": "{program_name}"
+	},
+
+
+	{
+	  "scenarioName": "Admin creates batch with suffix characters",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": "APIBasics-zGwQYtwC_99AADG",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 2,
+	  "programName": "{program_name}"
+	},
+	
+	{
+	  "scenarioName": "Admin creates batch with special characters in suffix",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": "APIBasics-zGwQYtwC_99$$%%",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 2,
+	  "programName": "{program_name}"
+	},
+	
+	{
+	  "scenarioName": "Admin creates batch with name length more than twenty eight",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": "APIBasicsasdasll,adlasdmald asdal m ad awb esdadada asdasda zGwQYtwC_99",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 2,
+	  "programName": "{program_name}"
+	},
+	
+	{
+	  "scenarioName": "Admin creates batch with name length less than six",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": "API_99",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 2,
+	  "programName": "{program_name}"
+	},
+	
+	{
+	  "scenarioName": "Admin creates batch with duplicate name",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": "APIBasics-zGwQYtwC_18",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 2,
+	  "programName": "{program_name}"
+	},
+	{
+	  "scenarioName": "Admin creates batch with short description",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": " ",
+	  "batchDescription": "Ba",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 2,
+	  "programName": "{program_name}"
+	},
+	
+	{
+	  "scenarioName": "Admin creates batch with long description",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured sdalkl jnadkam adalm  wnqwe iwajd qwejqwoj wewq awjwoejqwo",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 2,
+	  "programName": "{program_name}"
+	},
+	
+	{
+	  "scenarioName": "Admin creates batch with random characters in status",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "ActaADDD",
+	  "batchNoOfClasses": 2,
+	  "programName": "{program_name}"
+	},			
+
+	{
+	  "scenarioName": "Admin creates batch with random numbers in status",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "Active775",
+	  "batchNoOfClasses": 2,
+	  "programName": "{program_name}"
+	},			
+
+
+	{
+	  "scenarioName": "Admin creates batch with special characters in status",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "##Active#$@$",
+	  "batchNoOfClasses": 2,
+	  "programName": "{program_name}"
+	},			
+
+	{
+	  "scenarioName": "Admin creates batch with classes length less than one",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 0,
+	  "programName": "{program_name}"
+	},			
+	{
+	  "scenarioName": "Admin creates batch with classes length more than allowed",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 101,
+	  "programName": "{program_name}"
+	},			
+	
+	{
+	  "scenarioName": "Admin creates batch with inactive program id",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 3,
+	  "programName": "{program_name}"
+	},			
+	{
+	  "scenarioName": "Admin creates batch with invalid program id",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 404,
+	  "expectedstatusline": "Not Found",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 3,
+	  "programName": "{program_name}"
+	},			
+	{
+	  "scenarioName": "Admin creates batch with invalid endpoint",
+	  "endPoint": "batc",
+	  "requestType": "POST",
+	  "expectedStatusCode": 404,
+	  "expectedstatusline": "Not Found",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 3,
+	  "programName": "{program_name}"
+	},			
+
+	{
+	  "scenarioName": "Admin creates batch with invalid content type",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 415,
+	  "expectedstatusline": "Unsupported Media Type",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 3,
+	  "programName": "{program_name}"
+	},			
+
+	{
+	  "scenarioName": "Admin creates batch with invalid method",
+	  "endPoint": "batches",
+	  "requestType": "GET",
+	  "expectedStatusCode": 405,
+	  "expectedstatusline": "Method Not Allowed",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 3,
+	  "programName": "{program_name}"
+	},
+
+
+	{
+	  "scenarioName": "Admin updates a batch with valid batch ID",
+	  "endPoint": "batches",
+	  "requestType": "PUT",
+	  "expectedStatusCode": 200,
+	  "expectedstatusline": "OK",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured updated",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 6,
+	  "programName": " "
+	},
+	
+	{
+	  "scenarioName": "Admin updates a batch with invalid batch ID",
+	  "endPoint": "batches",
+	  "requestType": "PUT",
+	  "expectedStatusCode": 404,
+	  "expectedstatusline": "Not Found",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured updated",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 6,
+	  "programName": " "
+	},			
+			
+	{
+	  "scenarioName": "Admin updates a batch by batch id with missing mandatory fields in request body",
+	  "endPoint": "batches",
+	  "requestType": "PUT",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": "",
+	  "batchDescription": "Basics in rest assured updated",
+	  "batchStatus": "",
+	  "batchNoOfClasses": 0,
+	  "programName": ""
+	},			
+		
+	{
+	  "scenarioName": "Admin updates a batch by batch id with duplicate batch name",
+	  "endPoint": "batches",
+	  "requestType": "PUT",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured updated",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 4,
+	  "programName": " "
+	},
+	
+	{
+	  "scenarioName": "Admin updates a batch by batch id with invalid batch name format",
+	  "endPoint": "batches",
+	  "requestType": "PUT",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": "APIBasics-zGwQYtwC",
+	  "batchDescription": "Basics in rest assured updated",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 4,
+	  "programName": " "
+	},
+	
+	{
+	  "scenarioName": "Admin updates a batch by batch id with batch name more than allowable length",
+	  "endPoint": "batches",
+	  "requestType": "PUT",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": "Agsdakdmamsdasmdladfsffffffffffffffffffffffff_55",
+	  "batchDescription": "Basics in rest assured updated",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 4,
+	  "programName": " "
+	},
+	
+	{
+	  "scenarioName": "Admin updates a batch by batch id with batch name less than allowable length in total",
+	  "endPoint": "batches",
+	  "requestType": "PUT",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": "Ag_55",
+	  "batchDescription": "Basics in rest assured updated",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 4,
+	  "programName": " "
+	},
+	
+	{
+	  "scenarioName": "Admin updates a batch by batch id with invalid batch description",
+	  "endPoint": "batches",
+	  "requestType": "PUT",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": " ",
+	  "batchDescription": "#####3129146732@!#!@updated",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 4,
+	  "programName": " "
+	},
+	{
+	  "scenarioName": "Admin updates a batch by batch id with invalid batch status",
+	  "endPoint": "batches",
+	  "requestType": "PUT",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured updated",
+	  "batchStatus": "Action",
+	  "batchNoOfClasses": 4,
+	  "programName": " "
+	},
+	
+	{
+	  "scenarioName": "Admin updates a batch by batch id with invalid batch number of classes",
+	  "endPoint": "batches",
+	  "requestType": "PUT",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured updated",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 120,
+	  "programName": " "
+	},
+	
+	{
+	  "scenarioName": "Admin updates a batch by batch id with invalid program id",
+	  "endPoint": "batches",
+	  "requestType": "PUT",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured updated",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 4,
+	  "programName": " "
+	},
+	
+	{
+	  "scenarioName": "Admin updates a batch by batch id with special characters in program name",
+	  "endPoint": "batches",
+	  "requestType": "PUT",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured updated",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 4,
+	  "programName": "###sdasd$$$"
+	},
+	
+	{
+	  "scenarioName": "Admin updates a batch by batch id with numbers in program name",
+	  "endPoint": "batches",
+	  "requestType": "PUT",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured updated",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 4,
+	  "programName": "67123 321 sdadsnmad"
+	},
+	
+	{
+	  "scenarioName": "Admin updates a batch by batch id with inactive program name",
+	  "endPoint": "batches",
+	  "requestType": "PUT",
+	  "expectedStatusCode": 400,
+	  "expectedstatusline": "Bad Request",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured updated",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 4,
+	  "programName": " "
+	},
+	{
+	  "scenarioName": "Admin updates a batch by batch id with invalid endpoint",
+	  "endPoint": "batcasaas",
+	  "requestType": "PUT",
+	  "expectedStatusCode": 404,
+	  "expectedstatusline": "Not Found",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured updated",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 4,
+	  "programName": " "
+	},
+	{
+	  "scenarioName": "Admin updates a batch by batch id with invalid method",
+	  "endPoint": "batches",
+	  "requestType": "POST",
+	  "expectedStatusCode": 405,
+	  "expectedstatusline": "Method Not Allowed",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured updated",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 4,
+	  "programName": " "
+	},
+	{
+	  "scenarioName": "Admin updates a batch by batch id with invalid content type",
+	  "endPoint": "batches",
+	  "requestType": "PUT",
+	  "expectedStatusCode": 415,
+	  "expectedstatusline": "Unsupported Media Type",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured updated",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 4,
+	  "programName": " "
+	},
+	{
+	  "scenarioName": "Admin updates a batch by batch id with a program name that does not match the associated program id",
+	  "endPoint": "batches",
+	  "requestType": "PUT",
+	  "expectedStatusCode": 200,
+	  "expectedstatusline": "ok",
+	  "batchName": " ",
+	  "batchDescription": "Basics in rest assured updated",
+	  "batchStatus": "Active",
+	  "batchNoOfClasses": 4,
+	  "programName": "not a valid programname"
+	},
+	
+	{
+      "scenarioName": "Admin deletes a batch with valid batch id",
+	  "endPoint": "batches",
+	  "requestType": "DELETE",
+	  "expectedStatusCode": 200,
+	  "expectedstatusline": "OK"
+	},
+	{
+	  "scenarioName": "Admin deletes a batch with invalid batch id",
+	  "endPoint": "batches",
+	  "requestType": "DELETE",
+	  "expectedStatusCode": 404,
+	  "expectedstatusline": "Not Found"
+	},
+	
+	{
+	  "scenarioName": "Admin deletes a batch by batch id with invalid endpoint",
+	  "endPoint": "batches",
+	  "requestType": "DELETE",
+	  "expectedStatusCode": 404,
+	  "expectedstatusline": "Not Found"
+	},
+	{
+	  "scenarioName": "Admin deletes a batch by batch id with invalid method",
+	  "endPoint": "bhes",
+	  "requestType": "POST",
+	  "expectedStatusCode": 405,
+	  "expectedstatusline": "Method Not Allowed"
+	},
+	{
+	  "scenarioName": "Admin deletes a batch by batch id with invalid content type",
+	  "endPoint": "batches",
+	  "requestType": "DELETE",
+	  "expectedStatusCode": 415,
+	  "expectedstatusline": "Unsupported Media Type"
+	},
+
+	{
+	  "scenarioName": "valid request body",
+	  "endPoint": "saveprogram",
+	  "requestType": "POST",
+	  "programDescription": "Learning about API",
+	  "programName": "APIBasics",
+	  "programStatus": "Active",
+	  "expectedStatusCode": 201,
+	  "expectedStatusLine": "HTTP/1.1 201 Created",
+	  "expectedMessage": "Created"
+	},
+	{
+	  "scenarioName": "only mandatory field",
+	  "endPoint": "saveprogram",
+	  "requestType": "POST",
+	  "programDescription": "",
+	  "programName": "APIBasics",
+	  "programStatus": "Active",
+	  "expectedStatusCode": 201,
+	  "expectedStatusLine": "HTTP/1.1 201 Created",
+	  "expectedMessage": "Created"
+	},
+	{
+	  "scenarioName": "program description length between 4 and 25 characters",
+	  "endPoint": "saveprogram",
+	  "requestType": "POST",
+	  "programDescription": "Learn API",
+	  "programName": "APIBasics",
+	  "programStatus": "Active",
+	  "expectedStatusCode": 201,
+	  "expectedStatusLine": "HTTP/1.1 201 Created",
+	  "expectedMessage": "Created"
+	},
+	{
+	  "scenarioName": "program name length between 4 and 25 characters",
+	  "endPoint": "saveprogram",
+	  "requestType": "POST",
+	  "programDescription": "Learning API",
+	  "programName": "APITest",
+	  "programStatus": "Active",
+	  "expectedStatusCode": 201,
+	  "expectedStatusLine": "HTTP/1.1 201 Created",
+	  "expectedMessage": "Created"
+	},
+	{
+	  "scenarioName": "invalid token",
+	  "endPoint": "saveprogram",
+	  "requestType": "POST",
+	  "programDescription": "Learning API",
+	  "programName": "APITest",
+	  "programStatus": "Active",
+	  "authType": "invalid token",
+	  "expectedStatusCode": 401,
+	  "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+	  "expectedMessage": ""
+	},
+	{
+	  "scenarioName": "program with invalid endpoint",
+	  "endPoint": "saveprog",
+	  "requestType": "POST",
+	  "programDescription": "Learning API",
+	  "programName": "APITest",
+	  "programStatus": "Active",
+	  "expectedStatusCode": 404,
+	  "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	  "expectedMessage": "Invalid endpoint"
+	},
+	{
+	  "scenarioName": "invalid content",
+	  "endPoint": "saveprogram",
+	  "requestType": "POST",
+	  "contentType": "INVALID",
+	  "programDescription": "Learning API",
+	  "programName": "APITest",
+	  "programStatus": "Active",
+	  "expectedStatusCode": 415,
+	  "expectedStatusLine": "HTTP/1.1 415 Unsupported Media Type",
+	  "expectedMessage": "Content-Type not supported. Please use application/json"
+	},
+	{
+	  "scenarioName": "program with invalid method",
+	  "endPoint": "saveprogram",
+	  "requestType": "GET",
+	  "programDescription": "Learning API",
+	  "programName": "APITest",
+	  "programStatus": "Active",
+	  "expectedStatusCode": 405,
+	  "expectedStatusLine": "HTTP/1.1 405 Method Not Allowed",
+	  "expectedMessage": "Request method 'GET' is not supported"
+	},
+	{
+	    "scenarioName": "existing program name",
+	    "endPoint": "saveprogram",
+	    "requestType": "POST",
+	    "programDescription": "Learning API",
+	    "programName": "APITest", 
+	    "programStatus": "Active",
+	    "expectedStatusCode": 400,
+	    "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	    "expectedMessage": "cannot create program , since already exists"
+	  },
+	  {
+	    "scenarioName": "trailing space in program name",
+	    "endPoint": "saveprogram",
+	    "requestType": "POST",
+	    "programDescription": "Learning API",
+	    "programName": "APITest ", 
+	    "programStatus": "Active",
+	    "expectedStatusCode": 400,
+	    "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	    "expectedMessage": "programName Must contain only letters and sometimes hyphens"
+	  },
+	  {
+	    "scenarioName": "only numbers in program name",
+	    "endPoint": "saveprogram",
+	    "requestType": "POST",
+	    "programDescription": "Learning API",
+	    "programName": "123456",
+	    "programStatus": "Active",
+	    "expectedStatusCode": 400,
+	    "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	    "expectedMessage": "programName Must contain only letters and sometimes hyphens"
+	  },
+	  {
+	    "scenarioName": "program with invalid status",
+	    "endPoint": "saveprogram",
+	    "requestType": "POST",
+	    "programDescription": "Learning API",
+	    "programName": "APITest",
+	    "programStatus": "Started",
+	    "expectedStatusCode": 400,
+	    "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	    "expectedMessage": "Invalid Status: must be Active or Inactive"
+	  },
+	  {
+	    "scenarioName": "missing program name",
+	    "endPoint": "saveprogram",
+	    "requestType": "POST",
+	    "programDescription": "Learning API",
+	    "programName": null,
+	    "programStatus": "Active",
+	    "expectedStatusCode": 400,
+	    "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	    "expectedMessage": "Program Name is mandatory"
+	  },
+	  {
+	    "scenarioName": "program name too short",
+	    "endPoint": "saveprogram",
+	    "requestType": "POST",
+	    "programDescription": "Learning API",
+	    "programName": "API",
+	    "programStatus": "Active",
+	    "expectedStatusCode": 400,
+	    "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	    "expectedMessage": "Program Name must be of min length 4 and max length 25."
+	  },
+	  {
+	    "scenarioName": "empty payload",
+	    "endPoint": "saveprogram",
+	    "requestType": "POST",
+	    "programDescription": "",
+	    "programName": "",
+	    "programStatus": "",
+	    "expectedStatusCode": 400,
+	    "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	    "expectedMessage": "Required request body is missing"
+	  },
+	  {
+	    "scenarioName": "special char in program description",
+	    "endPoint": "saveprogram",
+	    "requestType": "POST",
+	    "programDescription": "@@@Invalid###",
+	    "programName": "APITest",
+	    "programStatus": "Active",
+	    "expectedStatusCode": 400,
+	    "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	    "expectedMessage": "programDescription must begin with letter and can only have letters, numbers, comma, hyphen, colon, period, underscore and space"
+	  },
+	  {
+	    "scenarioName": "program description too long",
+	    "endPoint": "saveprogram",
+	    "requestType": "POST",
+	    "programDescription": "This description is definitely more than twenty five characters",
+	    "programName": "APITest",
+	    "programStatus": "Active",
+	    "expectedStatusCode": 400,
+	    "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	    "expectedMessage": "Program Description must be of min length 4 and max length 25."
+	  },
+	  {
+	    "scenarioName": "get all programs with valid endpoint",
+	    "endPoint": "allPrograms",
+	    "requestType": "GET",
+	    "expectedStatusCode": 200,
+	    "expectedStatusLine": "HTTP/1.1 200 OK",
+	    "expectedMessage": ""
+	  },
+	  {
+	    "scenarioName": "get all programs with invalid endpoint",
+	    "endPoint": "allProgramz",
+	    "requestType": "GET",
+	    "expectedStatusCode": 404,
+	    "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	    "expectedMessage": "Invalid endpoint"
+	  },
+	  {
+	    "scenarioName": "get all programs with invalid method",
+	    "endPoint": "allPrograms",
+	    "requestType": "GET",
+	    "expectedStatusCode": 405,
+	    "expectedStatusLine": "HTTP/1.1 405 Method Not Allowed",
+	    "expectedMessage": "Request method 'POST' is not supported"
+	  },
+
+	  {
+	    "scenarioName": "get program with valid id",
+	    "endPoint": "programs",
+	    "requestType": "GET",
+	    "expectedStatusCode": 200,
+	    "expectedStatusLine": "HTTP/1.1 200 OK",
+	    "expectedMessage": "OK"
+	  },
+	  {
+	    "scenarioName": "get program with invalid id",
+	    "endPoint": "programs",
+	    "requestType": "GET",
+		"programId": 999999,
+	    "expectedStatusCode": 404,
+	    "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	    "expectedMessage": "not found"
+	  },
+	  {
+	    "scenarioName": "get program with invalid baseuri",
+	    "endPoint": "programs",
+	    "requestType": "GET",
+	    "baseURI": "https://invalid-lms-api.com/lms",
+	    "expectedStatusCode": 404,
+	    "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	    "expectedMessage": "Invalid endpoint"
+	  },
+	  {
+	    "scenarioName": "get program with invalid endpoint",
+	    "endPoint": "programz",
+	    "requestType": "GET",
+	    "expectedStatusCode": 404,
+	    "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	    "expectedMessage": "Invalid endpoint"
+	  },
+
+	  {
+	    "scenarioName": "get all programs user with valid endpoint",
+	    "endPoint": "allProgramsWithUsers",
+	    "requestType": "GET",
+	    "expectedStatusCode": 200,
+	    "expectedStatusLine": "HTTP/1.1 200 OK",
+	    "expectedMessage": ""
+	  },
+	  {
+	    "scenarioName": "get all programs user with invalid endpoint",
+	    "endPoint": "allProgramsUserz",
+	    "requestType": "GET",
+	    "expectedStatusCode": 404,
+	    "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	    "expectedMessage": "Invalid endpoint"
+	  },
+	  {
+	    "scenarioName": "get all programs user with invalid method",
+	    "endPoint": "allProgramsWithUsers",
+	    "requestType": "PUT",
+	    "expectedStatusCode": 405,
+	    "expectedStatusLine": "HTTP/1.1 405 Method Not Allowed",
+	    "expectedMessage": "Request method 'POST' is not supported"
+	  },
+	  {
+	    "scenarioName": "valid program id",
+	    "endPoint": "putprogram",
+	    "requestType": "PUT",
+	    "programDescription": "Updated Description",
+	    "programName": "UpdatedName",
+	    "programStatus": "Active",
+	    "expectedStatusCode": 200,
+	    "expectedStatusLine": "HTTP/1.1 200 OK",
+	    "expectedMessage": ""
+	  },
+	  {
+	    "scenarioName": "invalid program id",
+	    "endPoint": "putprogram",
+	    "requestType": "PUT",
+	    "programDescription": "upinvalid program",
+	    "programName": "Invalid Program Update",
+	    "programStatus": "Active",
+	    "expectedStatusCode": 404,
+	    "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	    "expectedMessage": "not found"
+	  },
+	  {
+	    "scenarioName": "already existing program name",
+	    "endPoint": "putprogram",
+	    "requestType": "PUT",
+	    "programDescription": "Duplicate name",
+	    "programName": "JavaBasics",
+	    "programStatus": "Active",
+	    "expectedStatusCode": 400,
+	    "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	    "expectedMessage": "Program Name JavaBasics already exists"
+	  },
+	  {
+	    "scenarioName": "without request body",
+	    "endPoint": "putprogram",
+	    "requestType": "PUT",
+	    "programDescription": "",
+	    "programName": "",
+	    "programStatus": "",
+	    "expectedStatusCode": 400,
+	    "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	    "expectedMessage": "Required request body is missing"
+	  },
+	  {
+	    "scenarioName": "invalid baseURI",
+	    "endPoint": "putprogram",
+	    "requestType": "PUT",
+	    "baseURI": "https://invalid-lms-api.com/lms",
+		"isCustomBaseURI": true,
+	    "programDescription": "upInvalid baseURI",
+	    "programName": "Valid Name",
+	    "programStatus": "Active",
+	    "expectedStatusCode": 404,
+	    "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	    "expectedMessage": ""
+	  },
+	  {
+	    "scenarioName": "invalid method",
+	    "endPoint": "putprogram",
+	    "requestType": "PATCH",
+	    "programDescription": "upinvalid method",
+	    "programName": "Valid Name",
+	    "programStatus": "Active",
+	    "expectedStatusCode": 405,
+	    "expectedStatusLine": "HTTP/1.1 405 Method Not Allowed",
+	    "expectedMessage": "Request method 'PATCH' is not supported"
+	  },
+	  {
+	    "scenarioName": "invalid endpoint",
+	    "endPoint": "putprogramXYZ",
+	    "requestType": "PUT",
+	    "programDescription": "upinvalid endpoint",
+	    "programName": "Valid Name",
+	    "programStatus": "Active",
+	    "expectedStatusCode": 404,
+	    "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	    "expectedMessage": "Invalid endpoint"
+	  },
+	  {
+	      "scenarioName": "valid program name",
+	      "endPoint": "program",
+	      "requestType": "PUT",
+	      "programName": "UpdatedName",
+	      "programDescription": "Updated Desc",
+	      "programStatus": "Active",
+	      "expectedStatusCode": 200,
+	      "expectedStatusLine": "HTTP/1.1 200 OK",
+	      "expectedMessage": ""
+	    },
+	    {
+	      "scenarioName": "invalid program name",
+	      "endPoint": "program",
+	      "requestType": "PUT",
+	      "programName": "NonExistingProgramXYZ",
+	      "programDescription": "Updated Desc",
+	      "programStatus": "Active",
+	      "expectedStatusCode": 404,
+	      "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	      "expectedMessage": "no such program name NonExistingProgramXYZ"
+	    },
+	    {
+	      "scenarioName": "missing mandatory fields",
+	      "endPoint": "program",
+	      "requestType": "PUT",
+	      "programName": "",
+	      "programDescription": "Updated Desc",
+	      "programStatus": "Active",
+	      "expectedStatusCode": 400,
+	      "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	      "expectedMessage":"Program Name is mandatory"
+	    },
+	    {
+	      "scenarioName": "invalid status",
+	      "endPoint": "program",
+	      "requestType": "PUT",
+	      "programName": "ValidName",
+	      "programDescription": "Updated Desc",
+	      "programStatus": "Running",
+	      "expectedStatusCode": 400,
+	      "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	      "expectedMessage": "Invalid Status: must be Active or Inactive"
+	    },
+	    {
+	      "scenarioName": "special char program description",
+	      "endPoint": "program",
+	      "requestType": "PUT",
+	      "programName": "ValidName",
+	      "programDescription": "@@@@!!!!",
+	      "programStatus": "Active",
+	      "expectedStatusCode": 400,
+	      "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	      "expectedMessage": "programDescription must begin with letter and can only have letters, numbers, comma, hyphen, colon, period, underscore and space"
+	    },
+	    {
+	      "scenarioName": "valid status",
+	      "endPoint": "program",
+	      "requestType": "PUT",
+	      "programName": "ValidName",
+	      "programDescription": "Updated Desc",
+	      "programStatus": "Inactive",
+	      "expectedStatusCode": 200,
+	      "expectedStatusLine": "HTTP/1.1 200 OK",
+	      "expectedMessage": ""
+	    },
+		{
+		    "scenarioName": "logout with no auth",
+		    "requestType": "GET",
+		    "authType": "noAuth",
+		    "endPoint": "logoutlms",
+		    "expectedStatusCode": 401,
+			"expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+		    "expectedMessage": "Unauthorized"
+		  },
+		  {
+		      "scenarioName": "logout with invalid token",
+		      "requestType": "GET",
+		      "authType": "invalidToken",
+		      "endPoint": "logoutlms",
+		      "expectedStatusCode": 401,
+			  "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+		      "expectedMessage": "Unauthorized"
+		    },
+		    {
+		      "scenarioName": "logout with expired token",
+		      "requestType": "GET",
+		      "authType": "expiredToken",
+		      "endPoint": "logoutlms",
+		      "expectedStatusCode": 401,
+			  "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+		      "expectedMessage": "Unauthorized"
+		    },
+			{
+			   "scenarioName": "logout with invalid endpoint",
+			   "endPoint": "logoutXYZ",
+			   "requestType": "GET",
+			   "authType": "VALID",
+			   "expectedStatusCode": 404,
+			   "expectedStatusLine": "HTTP/1.1 404 Not Found",
+			   "expectedMessage": "Invalid endpoint"
+			 },
+			 {
+			   "scenarioName": "logout with invalid method",
+			   "endPoint": "logout",
+			   "requestType": "PATCH",
+			   "authType": "VALID",
+			   "expectedStatusCode": 405,
+			   "expectedStatusLine": "HTTP/1.1 405 Method Not Allowed",
+			   "expectedMessage": "Request method 'POST' is not supported"
+			 },
+		    {
+		      "scenarioName": "logout with valid token",
+		      "requestType": "GET",
+		      "authType": "validToken",
+		      "endPoint": "logoutlms",
+		      "expectedStatusCode": 200,
+			  "expectedStatusLine":"OK",
+		      "expectedMessage": "Logout successful"
+		    },
+			  {
+			    "scenarioName": "Reset password with invalid email",
+			    "endPoint": "resetpassword",
+			    "requestType": "POST",
+			    "email": "invalidEmail",
+			    "password": "Valid@123",
+			    "contentType": "application/json",
+			    "expectedStatusCode": 400,
+				"expectedStatusLine": "HTTP/1.1 400 Bad Request",
+			    "expectedMessage": "Bad Request"
+			  },
+			  {
+			    "scenarioName": "Reset password with invalid password",
+			    "endPoint": "resetpassword",
+			    "requestType": "POST",
+			    "email": "team04@gmail.com",
+			    "password": "123",
+			    "contentType": "application/json",
+			    "expectedStatusCode": 400,
+				"expectedStatusLine": "HTTP/1.1 400 Bad Request",
+			    "expectedMessage": "Bad Request"
+			  },
+			  {
+			    "scenarioName": "Reset password with valid credentials",
+			    "endPoint": "resetpassword",
+			    "requestType": "POST",
+			    "email": "team04@gmail.com",
+			    "password": "TeamFour@123",
+			    "contentType": "application/json",
+			    "expectedStatusCode": 200,
+				"expectedStatusLine":"OK",
+			    "expectedMessage": "Password saved"
+			  },
+			  {
+			    "scenarioName": "Reset password with invalid endpoint",
+			    "endPoint": "resetpasswordXYZ",
+			    "requestType": "POST",
+			    "email": "team04@gmail.com",
+			    "password": "Valid@123",
+			    "contentType": "application/json",
+			    "expectedStatusCode": 404,
+				"expectedStatusLine":"HTTP/1.1 404 Not Found", 
+			    "expectedMessage": "Not Found"
+			  },
+			  {
+			    "scenarioName": "Reset password with invalid method",
+			  	"endPoint": "resetpassword",
+			  	"requestType": "GET",
+			    "email": "team04@gmail.com",
+				"password": "Valid@123",
+			  	"expectedStatusCode": 405,
+			  	"expectedStatusLine": "HTTP/1.1 405 Method Not Allowed",
+			  	"expectedMessage": "Request method 'GET' is not supported"
+			  },
+			  {	
+				  "scenarioName": "Reset password with invalid content",
+			      "endPoint": "resetpassword",
+			      "requestType": "POST",
+			      "contentType": "INVALID",
+			      "expectedStatusCode": 415,
+			      "expectedStatusLine": "HTTP/1.1 415 Unsupported Media Type",
+			      "expectedMessage": "Content-Type not supported. Please use application/json"
+			  },
+			    {
+			      "scenarioName": "Reset password with no auth",
+			      "endPoint": "resetpassword",
+			      "requestType": "POST",
+				  "userLoginEmailId": "team04@gmail.com",
+				   "password": "TeamFour@123",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "logout with no auth",
+			      "endPoint": "logout",
+			      "requestType": "GET",
+				  "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+				  "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "program with no auth",
+			      "endPoint": "saveprogram",
+			      "requestType": "POST",
+			        "programName": "TestProgram",
+			        "programDescription": "Test Desc",
+			        "programStatus": "Active",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "retrieve all programs with no auth",
+			      "endPoint": "allPrograms",
+			      "requestType": "GET",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "retrieve a program with no auth",
+			      "endPoint": "programs",
+			      "requestType": "GET",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "retrieve all program users with no auth",
+			      "endPoint": "allProgramsWithUsers",
+			      "requestType": "GET",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "update program by id with no auth",
+			      "endPoint": "putprogram",
+			      "requestType": "PUT",
+			        "programName": "UpdatedProgram",
+			        "programDescription": "Updated Desc",
+			        "programStatus": "Active",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "update program by name with no auth",
+			      "endPoint": "program",
+			      "requestType": "PUT",
+			        "programName": "UpdatedProgram",
+			        "programDescription": "Updated Desc",
+			        "programStatus": "Active",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+				{
+				  "scenarioName": "deletes a program with valid programName",
+				  "endPoint": "deletebyprogname",
+				  "requestType": "DELETE",
+				  "expectedStatusCode": 200,
+				  "expectedStatusLine": "HTTP/1.1 200 OK",
+				  "expectedMessage": "deleted successfully"
+				},
+				{
+				  "scenarioName": "deletes a program with non existing programName",
+				  "endPoint": "deletebyprogname",
+				  "requestType": "DELETE",
+				  "programName": "DoesNotExistXYZ",
+				  "expectedStatusCode": 404,
+				  "expectedStatusLine": "HTTP/1.1 404 Not Found",
+				  "expectedMessage": "not found"
+				},
+				{
+				  "scenarioName": "deletes a program with invalid endpoint",
+				  "endPoint": "deletebyprognameXYZ",
+				  "requestType": "DELETE",
+				  "expectedStatusCode": 404,
+				  "expectedStatusLine": "HTTP/1.1 404 Not Found",
+				  "expectedMessage": "Invalid endpoint"
+				},
+				{
+				  "scenarioName": "deletes a program with invalid method",
+				  "endPoint": "deletebyprogname",
+				  "requestType": "POST",
+				  "expectedStatusCode": 405,
+				  "expectedStatusLine": "HTTP/1.1 405 Method Not Allowed",
+				  "expectedMessage": "Request method 'POST' is not supported"
+				},
+				{
+				  "scenarioName": "delete program by programname with no auth",
+				  "endPoint": "deletebyprogname",
+				  "requestType": "DELETE",
+				  "authType": "noAuth",
+				  "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+				  "expectedMessage": "Unauthorized"
+				},
+				{
+				  "scenarioName": "deletes a program with valid program ID",
+				  "endPoint": "deletebyprogid",
+				  "requestType": "DELETE",
+				  "expectedStatusCode": 200,
+				  "expectedStatusLine": "HTTP/1.1 200 OK",
+				  "expectedMessage": "deleted successfully"
+				},
+				{
+				  "scenarioName": "deletes a program with alphabets in program ID",
+				  "endPoint": "deletebyprogid",
+				  "requestType": "DELETE",
+				  "programId": "99999",
+				  "expectedStatusCode": 404,
+				  "expectedStatusLine": "HTTP/1.1 404 Not Found",
+				  "expectedMessage": "Invalid endpoint"
+				},
+				{
+				  "scenarioName": "delete program by programid with no auth",
+				  "endPoint": "deletebyprogid",
+				  "requestType": "DELETE",
+				  "authType": "noAuth",
+				  "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+				  "expectedMessage": "Unauthorized"
+				},
+			    {
+			      "scenarioName": "create batch with no auth",
+			      "endPoint": "batches",
+			      "requestType": "POST",		     
+			        "batchName": "Batch1",
+			        "batchDescription": "Batch Desc",
+					"batchNoOfClasses": 0,
+			        "batchStatus": "Active",			    
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "retrieve all batches with no auth",
+			      "endPoint": "batches",
+			      "requestType": "GET",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "retrieve batch by batchid with no auth",
+			      "endPoint": "batches/batchId",
+			      "requestType": "GET",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "retrieve batch by batchname with no auth",
+			      "endPoint": "batches/batchName",
+			      "requestType": "GET",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "update batch by programid with no auth",
+			      "endPoint": "batches/program",
+			      "requestType": "PUT",
+			        "batchName": "UpdatedBatch",
+			        "batchDescription": "Updated Desc",
+					"batchNoOfClasses": 0,
+			        "batchStatus": "Active",	      
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "delete batch by batchid with no auth",
+			      "endPoint": "batches",
+			      "requestType": "DELETE",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    }
+
+]

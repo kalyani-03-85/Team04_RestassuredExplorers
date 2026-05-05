@@ -1,0 +1,156 @@
+[
+  {
+   "scenarioName": "Admin generates token with invalid method",
+   "endPoint": "login",
+   "userLoginEmailId": "team04@gmail.com",
+   "password":"TeamFour@123",
+   "requestType": "GET",
+   "expectedStatusCode": 405,
+   "expectedstatusline": "Not Allowed"
+  },
+
+  {
+   "scenarioName": "Admin generates token with invalid base URL",
+   "endPoint": "login",
+   "userLoginEmailId": "team04@gmail.com",
+   "password":"TeamFour@123",
+   "expectedStatusCode": 404,
+   "expectedstatusline": "Not Found"
+  },
+
+  {
+   "scenarioName": "Admin generates token with invalid content type",
+   "endPoint": "login",
+   "userLoginEmailId": "team04@gmail.com",
+   "password":"TeamFour@123",
+   "expectedStatusCode": 415,
+   "expectedstatusline": "unsupported media type"
+  },
+
+  {
+   "scenarioName": "Admin generates token with invalid endpoint",
+   "endPoint": "logo",
+   "userLoginEmailId": "team04@gmail.com",
+   "password":"TeamFour@123",
+   "expectedStatusCode": 401,
+   "expectedstatusline": "unauthorized"
+  },
+
+  {
+   "scenarioName": "Admin generates token with empty email",
+   "endPoint": "logo",
+   "userLoginEmailId": " ",
+   "password":"TeamFour@123",
+   "expectedStatusCode": 400,
+   "expectedstatusline": "Bad Request"
+  },
+
+
+  {
+   "scenarioName": "Admin generates token with special characters in email",
+   "endPoint": "login",
+   "userLoginEmailId": "t$&m04@g##ail.com",
+   "password":"TeamFour@123",
+   "expectedStatusCode": 400,
+   "expectedstatusline": "Bad Request"
+  },
+
+  {
+   "scenarioName": "Admin generates token with email having spaces",
+   "endPoint": "login",
+   "userLoginEmailId": "team04  @gmail.com",
+   "password":"TeamFour@123",
+   "expectedStatusCode": 400,
+   "expectedstatusline": "unauthorized"
+  },
+
+  {
+   "scenarioName": "Admin generates token with null in email field",
+   "endPoint": "login",
+   "userLoginEmailId": "",
+   "password":"TeamFour@123",
+   "expectedStatusCode": 401,
+   "expectedstatusline": "unauthorized"
+  },
+
+  {
+   "scenarioName": "Admin generates token for unregistered email",
+   "endPoint": "login",
+   "userLoginEmailId": "TeamTeam04@gmail.com",
+   "password":"TeamFour@123",
+   "expectedStatusCode": 400,
+   "expectedstatusline": "Bad Request"
+  },
+
+ {
+   "scenarioName": "Admin generates token with empty password",
+   "endPoint": "login",
+   "userLoginEmailId": "team04@gmail.com",
+   "password":" ",
+   "expectedStatusCode": 400,
+   "expectedstatusline": "Bad Request"
+ },
+  
+
+ {
+   "scenarioName": "Admin generates token with special characters inserted in password",
+   "endPoint": "login",
+   "userLoginEmailId": "team04@gmail.com",
+   "password":"$$Team@!$",
+   "expectedStatusCode": 401,
+   "expectedstatusline": "unauthorized"
+ },
+  
+ {
+   "scenarioName": "Admin generates token with special characters inserted in password",
+   "endPoint": "login",
+   "userLoginEmailId": "team04@gmail.com",
+   "password":"Team  Four@123",
+   "expectedStatusCode": 400,
+   "expectedstatusline": "Bad Request"
+ },
+  
+ {
+   "scenarioName": "Admin generates token with password having spaces",
+   "endPoint": "login",
+   "userLoginEmailId": "team04@gmail.com",
+   "password":"Team  Four@123",
+   "expectedStatusCode": 400,
+   "expectedstatusline": "Bad Request"
+ },
+  
+  
+ {
+   "scenarioName": "Admin generates token with null in password field",
+   "endPoint": "login",
+   "userLoginEmailId": "team04@gmail.com",
+   "password":"",
+   "expectedStatusCode": 400,
+   "expectedstatusline": "Bad Request"
+ },
+ 
+ {
+   "scenarioName": "Admin generates for inactive user",
+   "endPoint": "login",
+   "userLoginEmailId": "team04@gmail.com",
+   "password":"",
+   "expectedStatusCode": 400,
+   "expectedstatusline": "Bad Request"
+ },
+  
+ {
+   "scenarioName": "Admin generates token without request body",
+   "endPoint": "login",
+   "expectedStatusCode": 415,
+   "expectedstatusline": "Unsupported Media Type"
+ },
+ {
+    "scenarioName": "Admin generates token with valid credential",
+    "endPoint": "login",
+    "userLoginEmailId": "team04@gmail.com",
+    "password":"TeamFour@123",
+    "expectedStatusCode": 200,
+    "expectedstatusline": "OK"			
+  }
+  
+ ]
