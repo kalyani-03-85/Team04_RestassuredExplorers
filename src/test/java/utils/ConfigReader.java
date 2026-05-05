@@ -1,24 +1,33 @@
 package utils;
-import java.io.BufferedReader;
-import java.io.FileReader;
+
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-public class ConfigReader {
-	
-		
-		static Properties properties;
-		static String propertyFilePath = "src/test/resources/config/config.properties";
 
-		// To get the path of config properties file
-		public static void loadConfig() throws IOException {
-		
-				BufferedReader reader = new BufferedReader(new FileReader(propertyFilePath));
-				
-						properties = new Properties();
-						properties.load(reader);
-				
-	}
-		public static String getKey(String value) {
-			return value;
-		}
-	}
+public class ConfigReader {
+
+    private static Properties properties;
+    private static final String propertyFilePath = "src/test/resources/ConfigReader/config.properties";
+
+    // Static block → loads config automatically when class is used
+    static {
+        try {
+            properties = new Properties();
+            FileInputStream fis = new FileInputStream(propertyFilePath);
+            properties.load(fis);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load config.properties file", e);
+        }
+    }
+
+    // Get value by key
+    public static String getKey(String key) {
+        String value = properties.getProperty(key);
+
+        if (value == null) {
+            throw new RuntimeException("Key not found in config: " + key);
+        }
+
+        return value.trim();
+    }
+}

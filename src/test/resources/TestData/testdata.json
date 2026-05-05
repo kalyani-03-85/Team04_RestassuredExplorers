@@ -1,0 +1,695 @@
+[
+  {
+    "scenarioName": "Admin generates token with valid credentials",
+    "endPoint": "login",
+    "requestType": "POST",
+    "userLoginEmailId": "team04@gmail.com",
+    "password": "TeamFour@123",
+    "expectedStatusCode": 200,
+    "expectedStatusLine": "OK",
+    "expectedMessage": "OK"
+  },
+  {
+    "scenarioName": "valid request body",
+    "endPoint": "saveprogram",
+    "requestType": "POST",
+    "programDescription": "Learning about API",
+    "programName": "APIBasics",
+    "programStatus": "Active",
+    "expectedStatusCode": 201,
+    "expectedStatusLine": "HTTP/1.1 201 Created",
+    "expectedMessage": "Created"
+  },
+  {
+    "scenarioName": "only mandatory field",
+    "endPoint": "saveprogram",
+    "requestType": "POST",
+    "programDescription": "",
+    "programName": "APIBasics",
+    "programStatus": "Active",
+    "expectedStatusCode": 201,
+    "expectedStatusLine": "HTTP/1.1 201 Created",
+    "expectedMessage": "Created"
+  },
+  {
+    "scenarioName": "program description length between 4 and 25 characters",
+    "endPoint": "saveprogram",
+    "requestType": "POST",
+    "programDescription": "Learn API",
+    "programName": "APIBasics",
+    "programStatus": "Active",
+    "expectedStatusCode": 201,
+    "expectedStatusLine": "HTTP/1.1 201 Created",
+    "expectedMessage": "Created"
+  },
+  {
+    "scenarioName": "program name length between 4 and 25 characters",
+    "endPoint": "saveprogram",
+    "requestType": "POST",
+    "programDescription": "Learning API",
+    "programName": "APITest",
+    "programStatus": "Active",
+    "expectedStatusCode": 201,
+    "expectedStatusLine": "HTTP/1.1 201 Created",
+    "expectedMessage": "Created"
+  },
+  {
+    "scenarioName": "invalid token",
+    "endPoint": "saveprogram",
+    "requestType": "POST",
+    "programDescription": "Learning API",
+    "programName": "APITest",
+    "programStatus": "Active",
+    "authType": "invalid token",
+    "expectedStatusCode": 401,
+    "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+    "expectedMessage": ""
+  },
+  {
+    "scenarioName": "program with invalid endpoint",
+    "endPoint": "saveprog",
+    "requestType": "POST",
+    "programDescription": "Learning API",
+    "programName": "APITest",
+    "programStatus": "Active",
+    "expectedStatusCode": 404,
+    "expectedStatusLine": "HTTP/1.1 404 Not Found",
+    "expectedMessage": "Invalid endpoint"
+  },
+  {
+    "scenarioName": "invalid content",
+    "endPoint": "saveprogram",
+    "requestType": "POST",
+    "contentType": "INVALID",
+    "programDescription": "Learning API",
+    "programName": "APITest",
+    "programStatus": "Active",
+    "expectedStatusCode": 415,
+    "expectedStatusLine": "HTTP/1.1 415 Unsupported Media Type",
+    "expectedMessage": "Content-Type not supported. Please use application/json"
+  },
+  {
+    "scenarioName": "program with invalid method",
+    "endPoint": "saveprogram",
+    "requestType": "GET",
+    "programDescription": "Learning API",
+    "programName": "APITest",
+    "programStatus": "Active",
+    "expectedStatusCode": 405,
+    "expectedStatusLine": "HTTP/1.1 405 Method Not Allowed",
+    "expectedMessage": "Request method 'GET' is not supported"
+  },
+  {
+      "scenarioName": "existing program name",
+      "endPoint": "saveprogram",
+      "requestType": "POST",
+      "programDescription": "Learning API",
+      "programName": "APITest", 
+      "programStatus": "Active",
+      "expectedStatusCode": 400,
+      "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+      "expectedMessage": "cannot create program , since already exists"
+    },
+    {
+      "scenarioName": "trailing space in program name",
+      "endPoint": "saveprogram",
+      "requestType": "POST",
+      "programDescription": "Learning API",
+      "programName": "APITest ", 
+      "programStatus": "Active",
+      "expectedStatusCode": 400,
+      "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+      "expectedMessage": "programName Must contain only letters and sometimes hyphens"
+    },
+    {
+      "scenarioName": "only numbers in program name",
+      "endPoint": "saveprogram",
+      "requestType": "POST",
+      "programDescription": "Learning API",
+      "programName": "123456",
+      "programStatus": "Active",
+      "expectedStatusCode": 400,
+      "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+      "expectedMessage": "programName Must contain only letters and sometimes hyphens"
+    },
+    {
+      "scenarioName": "program with invalid status",
+      "endPoint": "saveprogram",
+      "requestType": "POST",
+      "programDescription": "Learning API",
+      "programName": "APITest",
+      "programStatus": "Started",
+      "expectedStatusCode": 400,
+      "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+      "expectedMessage": "Invalid Status: must be Active or Inactive"
+    },
+    {
+      "scenarioName": "missing program name",
+      "endPoint": "saveprogram",
+      "requestType": "POST",
+      "programDescription": "Learning API",
+      "programName": null,
+      "programStatus": "Active",
+      "expectedStatusCode": 400,
+      "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+      "expectedMessage": "Program Name is mandatory"
+    },
+    {
+      "scenarioName": "program name too short",
+      "endPoint": "saveprogram",
+      "requestType": "POST",
+      "programDescription": "Learning API",
+      "programName": "API",
+      "programStatus": "Active",
+      "expectedStatusCode": 400,
+      "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+      "expectedMessage": "Program Name must be of min length 4 and max length 25."
+    },
+    {
+      "scenarioName": "empty payload",
+      "endPoint": "saveprogram",
+      "requestType": "POST",
+      "programDescription": "",
+      "programName": "",
+      "programStatus": "",
+      "expectedStatusCode": 400,
+      "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+      "expectedMessage": "Required request body is missing"
+    },
+    {
+      "scenarioName": "special char in program description",
+      "endPoint": "saveprogram",
+      "requestType": "POST",
+      "programDescription": "@@@Invalid###",
+      "programName": "APITest",
+      "programStatus": "Active",
+      "expectedStatusCode": 400,
+      "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+      "expectedMessage": "programDescription must begin with letter and can only have letters, numbers, comma, hyphen, colon, period, underscore and space"
+    },
+    {
+      "scenarioName": "program description too long",
+      "endPoint": "saveprogram",
+      "requestType": "POST",
+      "programDescription": "This description is definitely more than twenty five characters",
+      "programName": "APITest",
+      "programStatus": "Active",
+      "expectedStatusCode": 400,
+      "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+      "expectedMessage": "Program Description must be of min length 4 and max length 25."
+    },
+	  {
+	    "scenarioName": "get all programs with valid endpoint",
+	    "endPoint": "allPrograms",
+	    "requestType": "GET",
+	    "expectedStatusCode": 200,
+	    "expectedStatusLine": "HTTP/1.1 200 OK",
+	    "expectedMessage": ""
+	  },
+	  {
+	    "scenarioName": "get all programs with invalid endpoint",
+	    "endPoint": "allProgramz",
+	    "requestType": "GET",
+	    "expectedStatusCode": 404,
+	    "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	    "expectedMessage": "Invalid endpoint"
+	  },
+	  {
+	    "scenarioName": "get all programs with invalid method",
+	    "endPoint": "allPrograms",
+	    "requestType": "GET",
+	    "expectedStatusCode": 405,
+	    "expectedStatusLine": "HTTP/1.1 405 Method Not Allowed",
+	    "expectedMessage": "Request method 'POST' is not supported"
+	  },
+
+	  {
+	    "scenarioName": "get program with valid id",
+	    "endPoint": "programs",
+	    "requestType": "GET",
+	    "expectedStatusCode": 200,
+	    "expectedStatusLine": "HTTP/1.1 200 OK",
+	    "expectedMessage": "OK"
+	  },
+	  {
+	    "scenarioName": "get program with invalid id",
+	    "endPoint": "programs",
+	    "requestType": "GET",
+		"programId": 999999,
+	    "expectedStatusCode": 404,
+	    "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	    "expectedMessage": "not found"
+	  },
+	  {
+	    "scenarioName": "get program with invalid baseuri",
+	    "endPoint": "programs",
+	    "requestType": "GET",
+	    "baseURI": "https://invalid-lms-api.com/lms",
+	    "expectedStatusCode": 404,
+	    "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	    "expectedMessage": "Invalid endpoint"
+	  },
+	  {
+	    "scenarioName": "get program with invalid endpoint",
+	    "endPoint": "programz",
+	    "requestType": "GET",
+	    "expectedStatusCode": 404,
+	    "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	    "expectedMessage": "Invalid endpoint"
+	  },
+
+	  {
+	    "scenarioName": "get all programs user with valid endpoint",
+	    "endPoint": "allProgramsWithUsers",
+	    "requestType": "GET",
+	    "expectedStatusCode": 200,
+	    "expectedStatusLine": "HTTP/1.1 200 OK",
+	    "expectedMessage": ""
+	  },
+	  {
+	    "scenarioName": "get all programs user with invalid endpoint",
+	    "endPoint": "allProgramsUserz",
+	    "requestType": "GET",
+	    "expectedStatusCode": 404,
+	    "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	    "expectedMessage": "Invalid endpoint"
+	  },
+	  {
+	    "scenarioName": "get all programs user with invalid method",
+	    "endPoint": "allProgramsWithUsers",
+	    "requestType": "PUT",
+	    "expectedStatusCode": 405,
+	    "expectedStatusLine": "HTTP/1.1 405 Method Not Allowed",
+	    "expectedMessage": "Request method 'POST' is not supported"
+	  },
+	  {
+	    "scenarioName": "valid program id",
+	    "endPoint": "putprogram",
+	    "requestType": "PUT",
+	    "programDescription": "Updated Description",
+	    "programName": "UpdatedName",
+	    "programStatus": "Active",
+	    "expectedStatusCode": 200,
+	    "expectedStatusLine": "HTTP/1.1 200 OK",
+	    "expectedMessage": ""
+	  },
+	  {
+	    "scenarioName": "invalid program id",
+	    "endPoint": "putprogram",
+	    "requestType": "PUT",
+	    "programDescription": "upinvalid program",
+	    "programName": "Invalid Program Update",
+	    "programStatus": "Active",
+	    "expectedStatusCode": 404,
+	    "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	    "expectedMessage": "not found"
+	  },
+	  {
+	    "scenarioName": "already existing program name",
+	    "endPoint": "putprogram",
+	    "requestType": "PUT",
+	    "programDescription": "Duplicate name",
+	    "programName": "JavaBasics",
+	    "programStatus": "Active",
+	    "expectedStatusCode": 400,
+	    "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	    "expectedMessage": "Program Name JavaBasics already exists"
+	  },
+	  {
+	    "scenarioName": "without request body",
+	    "endPoint": "putprogram",
+	    "requestType": "PUT",
+	    "programDescription": "",
+	    "programName": "",
+	    "programStatus": "",
+	    "expectedStatusCode": 400,
+	    "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	    "expectedMessage": "Required request body is missing"
+	  },
+	  {
+	    "scenarioName": "invalid baseURI",
+	    "endPoint": "putprogram",
+	    "requestType": "PUT",
+	    "baseURI": "https://invalid-lms-api.com/lms",
+		"isCustomBaseURI": true,
+	    "programDescription": "upInvalid baseURI",
+	    "programName": "Valid Name",
+	    "programStatus": "Active",
+	    "expectedStatusCode": 404,
+	    "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	    "expectedMessage": ""
+	  },
+	  {
+	    "scenarioName": "invalid method",
+	    "endPoint": "putprogram",
+	    "requestType": "PATCH",
+	    "programDescription": "upinvalid method",
+	    "programName": "Valid Name",
+	    "programStatus": "Active",
+	    "expectedStatusCode": 405,
+	    "expectedStatusLine": "HTTP/1.1 405 Method Not Allowed",
+	    "expectedMessage": "Request method 'PATCH' is not supported"
+	  },
+	  {
+	    "scenarioName": "invalid endpoint",
+	    "endPoint": "putprogramXYZ",
+	    "requestType": "PUT",
+	    "programDescription": "upinvalid endpoint",
+	    "programName": "Valid Name",
+	    "programStatus": "Active",
+	    "expectedStatusCode": 404,
+	    "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	    "expectedMessage": "Invalid endpoint"
+	  },
+	  {
+	      "scenarioName": "valid program name",
+	      "endPoint": "program",
+	      "requestType": "PUT",
+	      "programName": "UpdatedName",
+	      "programDescription": "Updated Desc",
+	      "programStatus": "Active",
+	      "expectedStatusCode": 200,
+	      "expectedStatusLine": "HTTP/1.1 200 OK",
+	      "expectedMessage": ""
+	    },
+	    {
+	      "scenarioName": "invalid program name",
+	      "endPoint": "program",
+	      "requestType": "PUT",
+	      "programName": "NonExistingProgramXYZ",
+	      "programDescription": "Updated Desc",
+	      "programStatus": "Active",
+	      "expectedStatusCode": 404,
+	      "expectedStatusLine": "HTTP/1.1 404 Not Found",
+	      "expectedMessage": "no such program name NonExistingProgramXYZ"
+	    },
+	    {
+	      "scenarioName": "missing mandatory fields",
+	      "endPoint": "program",
+	      "requestType": "PUT",
+	      "programName": "",
+	      "programDescription": "Updated Desc",
+	      "programStatus": "Active",
+	      "expectedStatusCode": 400,
+	      "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	      "expectedMessage":"Program Name is mandatory"
+	    },
+	    {
+	      "scenarioName": "invalid status",
+	      "endPoint": "program",
+	      "requestType": "PUT",
+	      "programName": "ValidName",
+	      "programDescription": "Updated Desc",
+	      "programStatus": "Running",
+	      "expectedStatusCode": 400,
+	      "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	      "expectedMessage": "Invalid Status: must be Active or Inactive"
+	    },
+	    {
+	      "scenarioName": "special char program description",
+	      "endPoint": "program",
+	      "requestType": "PUT",
+	      "programName": "ValidName",
+	      "programDescription": "@@@@!!!!",
+	      "programStatus": "Active",
+	      "expectedStatusCode": 400,
+	      "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+	      "expectedMessage": "programDescription must begin with letter and can only have letters, numbers, comma, hyphen, colon, period, underscore and space"
+	    },
+	    {
+	      "scenarioName": "valid status",
+	      "endPoint": "program",
+	      "requestType": "PUT",
+	      "programName": "ValidName",
+	      "programDescription": "Updated Desc",
+	      "programStatus": "Inactive",
+	      "expectedStatusCode": 200,
+	      "expectedStatusLine": "HTTP/1.1 200 OK",
+	      "expectedMessage": ""
+	    },
+		{
+		    "scenarioName": "logout with no auth",
+		    "requestType": "GET",
+		    "authType": "noAuth",
+		    "endPoint": "logoutlms",
+		    "expectedStatusCode": 401,
+			"expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+		    "expectedMessage": "Unauthorized"
+		  },
+		  {
+		      "scenarioName": "logout with invalid token",
+		      "requestType": "GET",
+		      "authType": "invalidToken",
+		      "endPoint": "logoutlms",
+		      "expectedStatusCode": 401,
+			  "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+		      "expectedMessage": "Unauthorized"
+		    },
+		    {
+		      "scenarioName": "logout with expired token",
+		      "requestType": "GET",
+		      "authType": "expiredToken",
+		      "endPoint": "logoutlms",
+		      "expectedStatusCode": 401,
+			  "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+		      "expectedMessage": "Unauthorized"
+		    },
+			{
+			   "scenarioName": "logout with invalid endpoint",
+			   "endPoint": "logoutXYZ",
+			   "requestType": "GET",
+			   "authType": "VALID",
+			   "expectedStatusCode": 404,
+			   "expectedStatusLine": "HTTP/1.1 404 Not Found",
+			   "expectedMessage": "Invalid endpoint"
+			 },
+			 {
+			   "scenarioName": "logout with invalid method",
+			   "endPoint": "logout",
+			   "requestType": "PATCH",
+			   "authType": "VALID",
+			   "expectedStatusCode": 405,
+			   "expectedStatusLine": "HTTP/1.1 405 Method Not Allowed",
+			   "expectedMessage": "Request method 'POST' is not supported"
+			 },
+		    {
+		      "scenarioName": "logout with valid token",
+		      "requestType": "GET",
+		      "authType": "validToken",
+		      "endPoint": "logoutlms",
+		      "expectedStatusCode": 200,
+			  "expectedStatusLine":"OK",
+		      "expectedMessage": "Logout successful"
+		    },
+			  {
+			    "scenarioName": "Reset password with invalid email",
+			    "endPoint": "resetpassword",
+			    "requestType": "POST",
+			    "email": "invalidEmail",
+			    "password": "Valid@123",
+			    "contentType": "application/json",
+			    "expectedStatusCode": 400,
+				"expectedStatusLine": "HTTP/1.1 400 Bad Request",
+			    "expectedMessage": "Bad Request"
+			  },
+			  {
+			    "scenarioName": "Reset password with invalid password",
+			    "endPoint": "resetpassword",
+			    "requestType": "POST",
+			    "email": "team04@gmail.com",
+			    "password": "123",
+			    "contentType": "application/json",
+			    "expectedStatusCode": 400,
+				"expectedStatusLine": "HTTP/1.1 400 Bad Request",
+			    "expectedMessage": "Bad Request"
+			  },
+			  {
+			    "scenarioName": "Reset password with valid credentials",
+			    "endPoint": "resetpassword",
+			    "requestType": "POST",
+			    "email": "team04@gmail.com",
+			    "password": "TeamFour@123",
+			    "contentType": "application/json",
+			    "expectedStatusCode": 200,
+				"expectedStatusLine":"OK",
+			    "expectedMessage": "Password saved"
+			  },
+			  {
+			    "scenarioName": "Reset password with invalid endpoint",
+			    "endPoint": "resetpasswordXYZ",
+			    "requestType": "POST",
+			    "email": "team04@gmail.com",
+			    "password": "Valid@123",
+			    "contentType": "application/json",
+			    "expectedStatusCode": 404,
+				"expectedStatusLine":"HTTP/1.1 404 Not Found", 
+			    "expectedMessage": "Not Found"
+			  },
+			  {
+			    "scenarioName": "Reset password with invalid method",
+			  	"endPoint": "resetpassword",
+			  	"requestType": "GET",
+			    "email": "team04@gmail.com",
+				"password": "Valid@123",
+			  	"expectedStatusCode": 405,
+			  	"expectedStatusLine": "HTTP/1.1 405 Method Not Allowed",
+			  	"expectedMessage": "Request method 'GET' is not supported"
+			  },
+			  {	
+				  "scenarioName": "Reset password with invalid content",
+			      "endPoint": "resetpassword",
+			      "requestType": "POST",
+			      "contentType": "INVALID",
+			      "expectedStatusCode": 415,
+			      "expectedStatusLine": "HTTP/1.1 415 Unsupported Media Type",
+			      "expectedMessage": "Content-Type not supported. Please use application/json"
+			  },
+			    {
+			      "scenarioName": "Reset password with no auth",
+			      "endPoint": "resetpassword",
+			      "requestType": "POST",
+				  "userLoginEmailId": "team04@gmail.com",
+				   "password": "TeamFour@123",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "logout with no auth",
+			      "endPoint": "logout",
+			      "requestType": "GET",
+				  "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+				  "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "program with no auth",
+			      "endPoint": "saveprogram",
+			      "requestType": "POST",
+			        "programName": "TestProgram",
+			        "programDescription": "Test Desc",
+			        "programStatus": "Active",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "retrieve all programs with no auth",
+			      "endPoint": "allPrograms",
+			      "requestType": "GET",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "retrieve a program with no auth",
+			      "endPoint": "programs",
+			      "requestType": "GET",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "retrieve all program users with no auth",
+			      "endPoint": "allProgramsWithUsers",
+			      "requestType": "GET",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "update program by id with no auth",
+			      "endPoint": "putprogram",
+			      "requestType": "PUT",
+			        "programName": "UpdatedProgram",
+			        "programDescription": "Updated Desc",
+			        "programStatus": "Active",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "update program by name with no auth",
+			      "endPoint": "program",
+			      "requestType": "PUT",
+			        "programName": "UpdatedProgram",
+			        "programDescription": "Updated Desc",
+			        "programStatus": "Active",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "delete program by programid with no auth",
+			      "endPoint": "deletebyprogid",
+			      "requestType": "DELETE",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "delete program by programname with no auth",
+			      "endPoint": "deletebyprogname",
+			      "requestType": "DELETE",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "create batch with no auth",
+			      "endPoint": "batches",
+			      "requestType": "POST",		     
+			        "batchName": "Batch1",
+			        "batchDescription": "Batch Desc",
+					"batchNoOfClasses": 0,
+			        "batchStatus": "Active",			    
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "retrieve all batches with no auth",
+			      "endPoint": "batches",
+			      "requestType": "GET",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "retrieve batch by batchid with no auth",
+			      "endPoint": "batches/batchId",
+			      "requestType": "GET",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "retrieve batch by batchname with no auth",
+			      "endPoint": "batches/batchName",
+			      "requestType": "GET",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "update batch by programid with no auth",
+			      "endPoint": "batches/program",
+			      "requestType": "PUT",
+			        "batchName": "UpdatedBatch",
+			        "batchDescription": "Updated Desc",
+					"batchNoOfClasses": 0,
+			        "batchStatus": "Active",	      
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    },
+			    {
+			      "scenarioName": "delete batch by batchid with no auth",
+			      "endPoint": "batches",
+			      "requestType": "DELETE",
+			      "expectedStatusCode": 401,
+				  "expectedStatusLine": "HTTP/1.1 400 Unauthorized",
+			      "expectedMessage": "Unauthorized"
+			    }
+			  		  
+]

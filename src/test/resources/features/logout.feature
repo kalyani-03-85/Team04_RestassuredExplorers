@@ -1,42 +1,20 @@
 @Logout
 Feature: Admin Logout API validation
 
-  Rule: Authentication validation
+  Background:
+  Admin sets Authorization to Bearer Token
 
-    Scenario Outline: Validate logout with different authentication states
-      Given Admin sets authorization to "<authType>"
-      When Admin sends "GET" request to "valid endpoint"
-      Then Admin validates status code <statusCode> with message "<message>"
+Scenario Outline: Validate logout with different authentication states
+  Given Admin creates GET Request for scenario "<testCase>"
+  When Admin sends a HTTPS request with endpoint
+  Then Admin receives "<statusCode>" and "<message>"
+  
+  Examples:
+      | testCase                  | statusCode | message           |
+      | logout with no auth       | 401        | Unauthorized      |
+      | logout with invalid token | 401        | Unauthorized      |
+      | logout with expired token | 401        | Unauthorized      |
+      | logout with invalid endpoint | 404        | Invalid endpoint                               |
+      | logout with invalid method   | 405        | Request method 'POST' is not supported         |
+      | logout with valid token   | 200        | Logout successful |
 
-      Examples:
-        | authType      | statusCode | message           |
-        | no auth       | 401        | Unauthorized      |
-        | invalid token | 401        | Unauthorized      |
-        | expired token | 401        | Unauthorized      |
-        | valid token   | 200        | Logout successful |
-
-
-  Rule: Endpoint validation
-
-    Scenario Outline: Validate logout with different endpoints
-      Given Admin sets authorization to "valid token"
-      When Admin sends "GET" request to "<endpoint>"
-      Then Admin validates status code <statusCode> with message "<message>"
-
-      Examples:
-        | endpoint         | statusCode | message        |
-        | valid endpoint   | 200        | Logout success |
-        | invalid endpoint | 404        | Not Found      |
-
-
-  Rule: Method validation
-
-    Scenario Outline: Validate logout with different HTTP methods
-      Given Admin sets authorization to "valid token"
-      When Admin sends "<method>" request to "valid endpoint"
-      Then Admin validates status code <statusCode> with message "<message>"
-
-      Examples:
-        | method | statusCode | message              |
-        | GET    | 200        | Logout successful    |
-        | POST   | 405        | Method Not Allowed   |

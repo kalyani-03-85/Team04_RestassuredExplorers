@@ -1,53 +1,60 @@
 package utils;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.File;
-import java.util.List;
-import java.util.Map;
+import java.util.Arrays;
 
 public class JsonDataReader {
 
-    private static List<Map<String, Object>> testData;
+    /**
+     * Generic method to read any JSON array file and return matching scenario object
+     */
+    public static <T> T getTestData(String filePath,
+                                    String scenarioName,
+                                    Class<T[]> clazz) {
 
-    public static List<Map<String, Object>> readJson(String filePath) {
-        if (testData == null) {
+        LoggerReader.info("Reading JSON Test Data File: " + filePath);
+        LoggerReader.info("Looking for scenario: " + scenarioName);
+
+        try {
             ObjectMapper mapper = new ObjectMapper();
-            try {
-                testData = mapper.readValue(
-                        new File(filePath),
-                        new TypeReference<List<Map<String, Object>>>() {}
-                );
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
+            // Read JSON array into POJO array
+            T[] dataArray = mapper.readValue(new File(filePath), clazz);
+
+            LoggerReader.info("Total scenarios loaded: " + dataArray.length);
+
+            return Arrays.stream(dataArray)
+                    .filter(obj -> getScenarioName(obj)
+                            .equalsIgnoreCase(scenarioName.trim()))
+                    .findFirst()
+                    .orElseThrow(() -> {
+                        LoggerReader.error("Scenario NOT FOUND in JSON: " + scenarioName);
+                        return new RuntimeException("No test data found for scenario: " + scenarioName);
+                    });
+
+        } catch (Exception e) {
+            LoggerReader.error("Failed to read JSON file: " + filePath);
+            LoggerReader.error("Error: " + e.getMessage());
+            throw new RuntimeException("Failed to read JSON file: " + filePath, e);
         }
-        return testData;
     }
 
-    public static Map<String, Object> getTestCaseById(String filePath, String testCaseId) {
-        List<Map<String, Object>> allData = readJson(filePath);
-        if (allData == null) {
-            throw new RuntimeException("Test data list is null. File may not be loaded correctly.");
+    /**
+     * Helper method to extract scenarioName from any POJO
+     */
+    private static <T> String getScenarioName(T obj) {
+        try {
+            return (String) obj.getClass()
+                    .getDeclaredField("scenarioName")
+                    .get(obj);
+
+        } catch (Exception e) {
+            LoggerReader.error("POJO missing 'scenarioName' field: " + obj.getClass().getSimpleName());
+            throw new RuntimeException(
+                    "POJO must contain 'scenarioName' field: "
+                            + obj.getClass().getSimpleName()
+            );
         }
-        for (Map<String, Object> data : allData) {
-            Object id = data.get("testCaseId");
-            if (id != null && testCaseId.equals(id.toString())) {
-                return data;
-            }
-        }
-        System.err.println("Available test case IDs in file:");
-        for (Map<String, Object> d : allData) {
-            System.err.println(d.get("testCaseId"));
-        }
-        throw new RuntimeException("Test case with ID " + testCaseId + " not found in file " + filePath);
     }
-        /*for (Map<String, Object> data : allData) {
-            if (testCaseId.equals(data.get("testCaseId"))) {
-                return data;
-            }
-        }
-        throw new RuntimeException("Test case with ID " + testCaseId + " not found.");
-    }*/
 }
